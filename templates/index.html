@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Show
+{% endblock title %}
+
+{% block content %}
+
+<div class="border border-2 rounded-5 m-4 p-4" id="centa">
+<table class="table ">
+          <thead>
+             <tr class="w3-animate-zoom">
+                <th >Sno.</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Update</th>
+                <th>Delete</th>
+                <th> </th>
+             </tr>
+          </thead>
+          <tbody>
+             {% for contact in contact %}
+             <tr class="w3-animate-zoom">
+                <td>{{forloop.counter}}</td>
+                <td>{{contact.Name}}</td>
+                <td>{{contact.Contact}}</td>
+             <td>
+                <form action="/update/" method="post" class="btn-block">
+                {% csrf_token %}
+                <input type="text" name="update" value="{{contact.id}}" hidden>
+                <input type="text" name="meth" value="get" hidden>
+                <button type="submit" class="btn btn-outline-primary">Upadte</button>
+              </form>
+             </td>
+             <td>
+               <form action="/delete/" method="post" class="btn-block">
+                  {% csrf_token %}
+                  <input type="text" name="del_id" value="{{contact.id}}" hidden>
+                  
+                  <button type="submit" class="btn btn-outline-dark">Delete</button>
+                </form>
+             </td>
+          </tr>
+               
+             {% endfor %}
+          
+          </tbody>
+       </table>
+      </div>
+</div>
+
+
+{% endblock content %}

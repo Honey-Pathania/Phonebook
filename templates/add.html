@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add New
+{% endblock title %}
+
+{% block content %}
+
+<div class="containrer">
+    <div class="p-4 m-4">
+        <div class="col-lg-5 mx-auto border rounded pt-4">
+            <h3 class="alert alert-light border rounded mx-3 mt-2 mb-4">Add New Contact</h3>
+            <form action="/add/" method="post">
+                
+                {% csrf_token %} 
+                
+                {% if error %}
+                <div class="alert alert-danger mx-3 my-2" role="alert">
+                    {{error}}
+                </div> 
+                {% endif %}
+
+
+                <!-- email -->
+                <div class="form-group mx-3 my-2">
+                  <label for="">Name</label>
+                  <input type="text" name="name" class="form-control form-control-sm btn btn-outline-secondary w3-animate-zoom" placeholder="Enter your Name" required>
+                </div>
+
+                <!-- password -->
+                <div class="form-group mx-3 my-2">
+                  <label for="">Contact Number</label>
+                  <input type="text" name="phone" class="form-control form-control-sm btn btn-outline-secondary w3-animate-zoom" placeholder="Enter your Contact number" required>
+                </div>
+
+                <div class="form-group mx-3 mt-5 mb-3 w3-animate-zoom">
+                    <input class="btn btn-outline-dark col-lg-3" type="submit" value="Add New">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
